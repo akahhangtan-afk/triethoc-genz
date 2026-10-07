@@ -604,8 +604,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const generateCertBtn = document.getElementById('generateCertBtn');
   const downloadCertBtn = document.getElementById('downloadCertBtn');
 
+  // Safe render function awaiting font rasterization
+  const renderCertSafely = (name, title, score) => {
+    const doDraw = () => {
+      certificate.generate(name, title, score);
+    };
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(doDraw);
+    } else {
+      doDraw();
+    }
+  };
+
   // Initial render
-  certificate.generate("Sinh Viên Biện Chứng", "Học Giả Biện Chứng Triển Vọng", "Đang Thử Thách");
+  renderCertSafely("Sinh Viên Biện Chứng", "Học Giả Biện Chứng Triển Vọng", "Đang Thử Thách");
+
+  // Re-verify render once full window resources & web fonts finish
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      const currentName = certInput && certInput.value.trim() ? certInput.value.trim() : "Sinh Viên Biện Chứng";
+      renderCertSafely(currentName, "Học Giả Biện Chứng Triển Vọng", "Đang Thử Thách");
+    });
+  }
 
   if (generateCertBtn && certInput) {
     generateCertBtn.addEventListener('click', () => {
@@ -615,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = parseInt(currentScore) >= 80
         ? "Bậc Thầy Tư Duy Biện Chứng Mác - Lênin"
         : "Chiến Binh Thực Tiễn Tích Cực";
-      certificate.generate(name, title, `${currentScore}/100 Điểm Sắc Bén`);
+      renderCertSafely(name, title, `${currentScore}/100 Điểm Sắc Bén`);
     });
   }
 
