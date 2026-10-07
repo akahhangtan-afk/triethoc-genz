@@ -34,7 +34,6 @@
         <div class="brand-emblem">☭</div>
         <div class="brand-text">
           <h1>TRIẾT HỌC GEN Z</h1>
-          <span>HỆ SINH THÁI BIỆN CHỨNG AI</span>
         </div>
       </a>
 
@@ -50,10 +49,6 @@
         <button id="soundToggleBtn" class="btn btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;"
           title="Bật/Tắt âm thanh tương tác">
           <span class="icon-anim icon-pulse">🔊</span> Âm thanh
-        </button>
-        <button id="openApiKeyBtn" class="btn btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;"
-          title="Trạng thái hệ thống AI">
-          <span class="status-dot" id="navStatusDot"></span> <span id="navAiStatusText">AI Sẵn Sàng</span>
         </button>
         <a href="#doctorSection" class="btn btn-primary" style="padding: 0.4rem 0.95rem; font-size: 0.85rem;">
           <span class="icon-anim icon-pulse">🩺</span> Khám Bệnh
@@ -79,18 +74,6 @@
       <p class="hero-desc">
         Ứng dụng AI biện chứng duy vật giải mã áp lực đời sống, overthinking và tôi luyện tư duy phản biện sắc bén.
       </p>
-
-      <div class="hero-cta">
-        <a href="#doctorSection" class="btn btn-primary">
-          <span class="icon-anim icon-heartbeat">🩺</span> Bác Sĩ AI Kê Đơn
-        </a>
-        <a href="#chatMarxSection" class="btn btn-gold">
-          <span class="icon-anim icon-wobble">💬</span> Chat Cùng Cụ Mác
-        </a>
-        <a href="#debateSection" class="btn btn-outline">
-          <span class="icon-anim icon-clash">⚔️</span> Đấu Trường Phản Biện
-        </a>
-      </div>
 
       <!-- Rotating Famous Quotes -->
       <div class="hero-quote-box glass-panel">
@@ -509,75 +492,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- ==========================================
-       MODAL TRẠNG THÁI & CẤU HÌNH AI (NETLIFY & GROQ)
-       ========================================== -->
-  <div id="apiKeyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-dialog">
-      <button id="closeApiKeyModalBtn" class="modal-close-btn" aria-label="Đóng modal">✕</button>
-
-      <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.75rem;">
-        <span style="font-size: 1.6rem;">⚡</span>
-        <h3 id="modalTitle" style="font-family: var(--font-display); font-size: 1.35rem; color: var(--gold-light); margin: 0;">
-          Hệ Thống Trí Tuệ Nhân Tạo Biện Chứng
-        </h3>
-      </div>
-
-      <div class="info-banner" id="proxyStatusBanner">
-        <strong>🟢 Chế độ Tự Động Hoạt Động:</strong> Web tích hợp sẵn <strong>Netlify Serverless Proxy + Groq Cloud (LLaMA-3.3-70B)</strong>. Khi deploy lên Netlify, mọi người truy cập đều có AI phản hồi trực tiếp với tốc độ ánh sáng mà <em>không cần đăng ký hay nhập API key</em>!
-      </div>
-
-      <h4 style="font-size: 0.95rem; color: var(--gold-light); margin-bottom: 0.5rem;">
-        🚀 Cấu hình một lần duy nhất trên Netlify:
-      </h4>
-      <div class="step-box">
-        <div class="step-num">1</div>
-        <div>Lấy Groq API Key miễn phí 100% tại <a href="https://console.groq.com/keys" target="_blank" rel="noopener" style="color: var(--gold-primary); text-decoration: underline;">console.groq.com</a> (tạo trong 15 giây).</div>
-      </div>
-      <div class="step-box">
-        <div class="step-num">2</div>
-        <div>Vào Netlify Dashboard ➔ Chọn trang web của bạn ➔ <strong>Site configuration</strong> ➔ <strong>Environment variables</strong>.</div>
-      </div>
-      <div class="step-box">
-        <div class="step-num">3</div>
-        <div>Thêm biến: Tên là <code style="color: #34d399; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">GROQ_API_KEY</code>, Giá trị là mã khóa <code>gsk_...</code> của bạn. Xong!</div>
-      </div>
-
-      <hr style="border: 0; border-top: 1px solid var(--border-subtle); margin: 1.25rem 0;">
-
-      <h4 style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 0.4rem;">
-        🛠️ Tùy chọn kiểm thử cục bộ trên máy (Local Developer):
-      </h4>
-      <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.75rem; line-height: 1.5;">
-        Nếu mở file HTML trên máy mà chưa chạy Netlify CLI, bạn có thể lưu key trực tiếp vào trình duyệt này:
-      </p>
-
-      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-        <div>
-          <label style="font-size: 0.82rem; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">
-            Groq API Key (khuyên dùng - siêu tốc độ):
-          </label>
-          <input type="password" id="groqApiKeyInput" placeholder="gsk_..."
-            style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.55rem 0.85rem; color: #fff; font-size: 0.85rem; font-family: monospace;">
-        </div>
-        <div>
-          <label style="font-size: 0.82rem; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">
-            Google Gemini API Key (dự phòng):
-          </label>
-          <input type="password" id="geminiApiKeyInput" placeholder="AIzaSy..."
-            style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.55rem 0.85rem; color: #fff; font-size: 0.85rem; font-family: monospace;">
-        </div>
-      </div>
-
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem;">
-        <span id="saveKeyFeedback" style="font-size: 0.82rem; color: #34d399;"></span>
-        <button id="saveApiKeyBtn" class="btn btn-primary" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;">
-          💾 Lưu Cấu Hình
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- Scripts -->
   <script src="js/ai-service.js"></script>

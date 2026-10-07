@@ -78,50 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. AI Status & Configuration Modal Handler
-  const openApiKeyBtn = document.getElementById('openApiKeyBtn');
-  const apiKeyModal = document.getElementById('apiKeyModal');
-  const closeApiKeyModalBtn = document.getElementById('closeApiKeyModalBtn');
-  const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
-  const groqApiKeyInput = document.getElementById('groqApiKeyInput');
-  const geminiApiKeyInput = document.getElementById('geminiApiKeyInput');
-  const saveKeyFeedback = document.getElementById('saveKeyFeedback');
-  const navStatusDot = document.getElementById('navStatusDot');
-  const navAiStatusText = document.getElementById('navAiStatusText');
 
-  if (openApiKeyBtn && apiKeyModal) {
-    openApiKeyBtn.addEventListener('click', () => {
-      sfx.playClick();
-      if (groqApiKeyInput) groqApiKeyInput.value = aiService.getGroqKey();
-      if (geminiApiKeyInput) geminiApiKeyInput.value = aiService.getGeminiKey();
-      if (saveKeyFeedback) saveKeyFeedback.textContent = '';
-      apiKeyModal.classList.add('active');
-    });
-  }
-
-  if (closeApiKeyModalBtn && apiKeyModal) {
-    closeApiKeyModalBtn.addEventListener('click', () => {
-      sfx.playClick();
-      apiKeyModal.classList.remove('active');
-    });
-    apiKeyModal.addEventListener('click', (e) => {
-      if (e.target === apiKeyModal) apiKeyModal.classList.remove('active');
-    });
-  }
-
-  if (saveApiKeyBtn) {
-    saveApiKeyBtn.addEventListener('click', () => {
-      sfx.playSuccess();
-      if (groqApiKeyInput) aiService.setGroqKey(groqApiKeyInput.value);
-      if (geminiApiKeyInput) aiService.setGeminiKey(geminiApiKeyInput.value);
-      if (saveKeyFeedback) {
-        saveKeyFeedback.textContent = '✓ Đã lưu cấu hình thành công!';
-      }
-      setTimeout(() => {
-        if (apiKeyModal) apiKeyModal.classList.remove('active');
-      }, 900);
-    });
-  }
 
   // 4. Dynamic Quote Rotator (Hero Section)
   const heroQuoteText = document.getElementById('heroQuoteText');
