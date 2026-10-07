@@ -115,13 +115,16 @@ class DialecticCertificate {
     // Signatures
     ctx.font = 'bold 22px "Be Vietnam Pro", sans-serif';
     ctx.fillStyle = '#f5c542';
-    ctx.fillText('BAN THẨM ĐỊNH BIỆN CHỨNG', this.width - 380, 890);
-    ctx.font = 'italic 22px "Playfair Display", "Lora", serif';
+    ctx.fillText('BAN THẨM ĐỊNH BIỆN CHỨNG', this.width - 380, 885);
+    ctx.font = '600 20px "Be Vietnam Pro", sans-serif';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText('Hội đồng Học thuật Trẻ', this.width - 380, 940);
-    ctx.font = '400 16px "Be Vietnam Pro", sans-serif';
+    ctx.fillText('Nhóm 1 • MKT1920-DIG', this.width - 380, 922);
+    ctx.font = 'italic 18px "Be Vietnam Pro", sans-serif';
+    ctx.fillStyle = '#f5c542';
+    ctx.fillText('Lead Project: Hoàng Mạnh Toàn', this.width - 380, 955);
+    ctx.font = '400 15px "Be Vietnam Pro", sans-serif';
     ctx.fillStyle = '#64748b';
-    ctx.fillText('(Ký tên & Đóng dấu điện tử)', this.width - 380, 975);
+    ctx.fillText('(Ký tên & Đóng dấu điện tử)', this.width - 380, 990);
   }
 
   drawCornerOrnament(ctx, x, y, dirX, dirY) {
