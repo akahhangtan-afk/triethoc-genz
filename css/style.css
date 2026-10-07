@@ -315,6 +315,9 @@ section {
 /* ==========================================================================
    BUTTONS WITH SHIMMER SWEEP & TACTILE FEEDBACK
    ========================================================================== */
+/* ==========================================================================
+   BUTTONS WITH LIVING AURA & AUTO SHIMMER SWEEP (ALWAYS ACTIVE FOR ALL BUTTONS)
+   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -331,7 +334,13 @@ section {
   border: none;
   position: relative;
   overflow: hidden;
-  will-change: transform;
+  will-change: transform, box-shadow;
+}
+
+@keyframes autoShimmerSweep {
+  0% { left: -75%; }
+  35% { left: 145%; }
+  100% { left: 145%; }
 }
 
 .btn::after {
@@ -341,34 +350,72 @@ section {
   left: -75%;
   width: 50%;
   height: 200%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.26), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
   transform: rotate(25deg);
-  transition: left 0.65s ease;
   pointer-events: none;
+  animation: autoShimmerSweep 4.2s infinite ease-in-out;
 }
 
 .btn:hover::after {
+  animation: none;
   left: 145%;
+  transition: left 0.4s ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.06);
+  transform: translateY(-3px) scale(1.02);
+  filter: brightness(1.1);
 }
 
 .btn:active {
   transform: translateY(0) scale(0.97);
 }
 
+/* Continuous Living Aura Animations for all Button Types */
+@keyframes autoAuraCrimson {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(239, 68, 68, 0.65), 0 0 18px rgba(220, 38, 38, 0.4);
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes autoAuraGold {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(245, 197, 66, 0.32);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(245, 197, 66, 0.6), 0 0 18px rgba(245, 197, 66, 0.38);
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes autoAuraOutline {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    transform: translateY(0);
+  }
+  50% {
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), 0 0 14px rgba(212, 175, 55, 0.25);
+    transform: translateY(-2px);
+  }
+}
+
 .btn-primary {
   background: linear-gradient(135deg, var(--crimson-primary), #991b1b);
   color: #fff;
   border: 1px solid rgba(254, 202, 202, 0.3);
-  box-shadow: 0 4px 15px var(--crimson-glow);
+  animation: autoAuraCrimson 3.2s ease-in-out infinite;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5);
+  box-shadow: 0 10px 32px rgba(239, 68, 68, 0.7);
   background: linear-gradient(135deg, #ef4444, var(--crimson-primary));
 }
 
@@ -376,11 +423,11 @@ section {
   background: linear-gradient(135deg, var(--gold-primary), #b45309);
   color: #161208;
   font-weight: 700;
-  box-shadow: 0 4px 15px var(--gold-glow);
+  animation: autoAuraGold 3.2s ease-in-out infinite 0.5s;
 }
 
 .btn-gold:hover {
-  box-shadow: 0 8px 25px rgba(245, 197, 66, 0.45);
+  box-shadow: 0 10px 32px rgba(245, 197, 66, 0.65);
   background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
 }
 
@@ -388,6 +435,7 @@ section {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
+  animation: autoAuraOutline 3.5s ease-in-out infinite 1s;
 }
 
 .btn-outline:hover {
@@ -567,6 +615,19 @@ section {
   align-items: center;
 }
 
+@keyframes autoChipGlow {
+  0%, 100% {
+    border-color: var(--border-subtle);
+    box-shadow: none;
+    transform: translateY(0);
+  }
+  50% {
+    border-color: rgba(212, 175, 55, 0.35);
+    box-shadow: 0 3px 12px rgba(212, 175, 55, 0.12);
+    transform: translateY(-1.5px);
+  }
+}
+
 .ai-suggestion-chip {
   background: rgba(255, 255, 255, 0.035);
   border: 1px solid var(--border-subtle);
@@ -576,13 +637,18 @@ section {
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
+  animation: autoChipGlow 3.5s ease-in-out infinite;
 }
 
+.ai-suggestion-chip:nth-child(2n) { animation-delay: 0.6s; }
+.ai-suggestion-chip:nth-child(3n) { animation-delay: 1.2s; }
+.ai-suggestion-chip:nth-child(4n) { animation-delay: 1.8s; }
+
 .ai-suggestion-chip:hover {
-  background: rgba(212, 175, 55, 0.12);
+  background: rgba(212, 175, 55, 0.15);
   border-color: var(--gold-primary);
   color: var(--gold-light);
-  transform: translateY(-2px);
+  transform: translateY(-2.5px);
 }
 
 .ai-rx-result-card {
@@ -1636,7 +1702,12 @@ a:hover .icon-tilt,
 
 
 
-/* 10. Chip Icons (Micro-Interactions in Suggestion Chips) */
+/* 10. Chip Icons (Micro-Interactions in Suggestion Chips) - ALWAYS ACTIVE */
+@keyframes chipIconFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2.5px) scale(1.16); }
+}
+
 .chip-icon {
   display: inline-block;
   vertical-align: middle;
@@ -1644,10 +1715,11 @@ a:hover .icon-tilt,
   margin-right: 0.2rem;
   transition: transform 0.28s var(--ease-spring), filter 0.28s ease;
   transform-origin: center center;
+  animation: chipIconFloat 2.6s ease-in-out infinite;
 }
 
 .ai-suggestion-chip:hover .chip-icon {
-  transform: scale(1.36) rotate(-8deg) translateY(-1px);
+  transform: scale(1.36) rotate(-8deg) translateY(-2px);
   filter: drop-shadow(0 0 6px var(--gold-glow));
 }
 
