@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triết Học Cho Gen Z | Hệ Sinh Thái Biện Chứng AI</title>
+  <meta name="description"
+    content="Dự án sáng tạo môn Triết học Mác - Lênin tích hợp AI: Bác sĩ Triết học kê đơn tâm sự, Chatbot đàm đạo cùng Karl Marx & Lênin, và Đấu trường phản biện biện chứng.">
+
+  <!-- Typography chuẩn Tạp chí Triết học Học thuật Quốc tế -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Lora:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Glowing Orbs Background -->
+  <div class="ambient-glow glow-crimson" aria-hidden="true"></div>
+  <div class="ambient-glow glow-gold" aria-hidden="true"></div>
+
+  <!-- ==========================================
+       NAVIGATION BAR
+       ========================================== -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="nav-brand">
+        <div class="brand-emblem">☭</div>
+        <div class="brand-text">
+          <h1>BIỆN CHỨNG GEN Z</h1>
+          <span>TRIẾT HỌC & AI</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#doctorSection"><span class="icon-anim icon-pulse">🩺</span> Bác Sĩ AI</a></li>
+        <li><a href="#chatMarxSection"><span class="icon-anim icon-wobble">💬</span> Đàm Đạo</a></li>
+        <li><a href="#debateSection"><span class="icon-anim icon-clash">⚔️</span> Đấu Trường</a></li>
+        <li><a href="#tarotSection"><span class="icon-anim icon-flip">🎴</span> Thẻ Bài</a></li>
+        <li><a href="#certificateSection"><span class="icon-anim icon-bounce">📜</span> Bằng Khen</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="soundToggleBtn" class="btn btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;"
+          title="Bật/Tắt âm thanh tương tác">
+          <span class="icon-anim icon-pulse">🔊</span> Âm thanh
+        </button>
+        <button id="openApiKeyBtn" class="btn btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;"
+          title="Trạng thái hệ thống AI">
+          <span class="status-dot" id="navStatusDot"></span> <span id="navAiStatusText">AI Sẵn Sàng</span>
+        </button>
+        <a href="#doctorSection" class="btn btn-primary" style="padding: 0.4rem 0.95rem; font-size: 0.85rem;">
+          <span class="icon-anim icon-pulse">🩺</span> Khám Bệnh
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO SECTION (MINIMALIST & PUNCHY)
+       ========================================== -->
+  <header class="hero reveal">
+    <div class="container">
+      <div class="hero-pill">
+        <span class="badge badge-gold"><span class="icon-anim icon-sparkle">✦</span> Triết Học Mác – Lênin & AI Biện
+          Chứng</span>
+      </div>
+
+      <h1 class="hero-title">
+        TRIẾT HỌC CHO GEN Z<br>
+        <span class="text-gradient-crimson">GIẢI MÃ TÂM TRÍ VÀ THỜI CUỘC</span>
+      </h1>
+
+      <p class="hero-desc">
+        Ứng dụng AI biện chứng duy vật giải mã áp lực đời sống, overthinking và tôi luyện tư duy phản biện sắc bén.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#doctorSection" class="btn btn-primary">
+          <span class="icon-anim icon-heartbeat">🩺</span> Bác Sĩ AI Kê Đơn
+        </a>
+        <a href="#chatMarxSection" class="btn btn-gold">
+          <span class="icon-anim icon-wobble">💬</span> Chat Cùng Cụ Mác
+        </a>
+        <a href="#debateSection" class="btn btn-outline">
+          <span class="icon-anim icon-clash">⚔️</span> Đấu Trường Phản Biện
+        </a>
+      </div>
+
+      <!-- Rotating Famous Quotes -->
+      <div class="hero-quote-box glass-panel">
+        <p id="heroQuoteText" class="quote-content">
+          “Các nhà triết học từ trước đến nay chỉ giải thích thế giới bằng nhiều cách khác nhau, song vấn đề là cải tạo
+          thế giới.”
+        </p>
+        <div id="heroQuoteAuthor" class="quote-author">
+          — C. Mác (Luận cương về Phoi-ơ-bắc, 1845)
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MODULE 1: BÁC SĨ TRIẾT HỌC AI (KÊ ĐƠN TỰ DO)
+       ========================================== -->
+  <section id="doctorSection" class="reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-crimson">AI Chẩn Trị</span>
+        <h2>Bác Sĩ Triết Học AI</h2>
+        <p>Bóc tách mâu thuẫn cốt lõi và kê toa thuốc triết học độc bản cho bế tắc của bạn.</p>
+      </div>
+
+      <div class="ai-doctor-box glass-panel">
+        <div class="ai-input-wrapper">
+          <textarea id="aiTroubleInput" class="ai-textarea"
+            placeholder="Chia sẻ bế tắc hoặc áp lực của bạn... (VD: Áp lực đồng trang lứa, overthinking, thất bại, chuyện tình cảm...)"></textarea>
+        </div>
+
+        <!-- Suggestion Prompt Chips -->
+        <div class="ai-prompt-suggestions">
+          <span style="font-size: 0.8rem; color: var(--gold-light); font-weight: 600;">Gợi ý:</span>
+          <button class="ai-suggestion-chip"
+            data-prompt="Em học năm 2 ngành IT, thấy bạn bè cùng khóa flex đi làm kiếm nhiều tiền còn em code đồ án mãi chưa chạy, áp lực quá!"><span
+              class="chip-icon">💻</span> Áp lực ngành IT</button>
+          <button class="ai-suggestion-chip"
+            data-prompt="Em rất hay overthinking, lên kế hoạch hoàn hảo trên giấy nhưng sợ sai nên mãi không dám bắt tay vào làm."><span
+              class="chip-icon">🧠</span> Overthinking & Trì hoãn</button>
+          <button class="ai-suggestion-chip"
+            data-prompt="Em vừa thất bại ở dự án khởi nghiệp đầu tay, mất sạch vốn và công sức, cảm thấy tương lai sụp đổ."><span
+              class="chip-icon">📉</span> Thất bại khởi nghiệp</button>
+          <button class="ai-suggestion-chip"
+            data-prompt="Em vừa chia tay mối tình 3 năm, cảm thấy mất phương hướng và không còn niềm tin vào bất cứ ai."><span
+              class="chip-icon">💔</span> Đổ vỡ tình cảm</button>
+        </div>
+
+        <div style="text-align: right;">
+          <button id="aiDiagnoseBtn" class="btn btn-primary">
+            <span class="icon-anim icon-tilt">🔬</span> Kê Đơn Triết Học
+          </button>
+        </div>
+
+        <!-- Live Prescription Result (Rendered dynamically) -->
+        <div id="aiRxResultBox" class="hidden"></div>
+      </div>
+
+      <!-- Presets Reference Symptoms -->
+      <div style="margin-top: 3.5rem;">
+        <div class="symptom-subhead reveal">
+          <h3>Ca Bệnh Điển Hình</h3>
+          <p>Chọn ca bệnh để xem phác đồ điều trị triết học mẫu</p>
+        </div>
+        <div id="symptomGrid" class="symptom-grid reveal"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prescription Modal (Toa thuốc mẫu có sẵn) -->
+  <div id="rxModal" class="modal-overlay">
+    <div class="prescription-modal">
+      <div class="rx-header">
+        <div>
+          <span id="rxTag" class="badge badge-gold" style="margin-bottom: 0.35rem;">Danh mục</span>
+          <h3 id="rxTitle">Toa Thuốc Triết Học</h3>
+        </div>
+        <button id="closeModalBtn" class="close-modal-btn">&times;</button>
+      </div>
+      <div class="rx-body">
+        <div class="rx-section">
+          <h4><span class="icon-anim icon-pulse">🩺</span> Triệu Chứng Lâm Sàng</h4>
+          <p id="rxSymptom" style="color: #cbd5e1; font-size: 0.95rem;"></p>
+        </div>
+
+        <div class="rx-section">
+          <h4><span class="icon-anim icon-tilt">🔬</span> Chẩn Đoán Biện Chứng</h4>
+          <p id="rxDiagnosis" style="color: #fca5a5; font-size: 0.95rem;"></p>
+        </div>
+
+        <div class="rx-section">
+          <h4><span class="icon-anim icon-wobble">⚖️</span> Quy Luật & Nguyên Lý</h4>
+          <p id="rxLaw" style="color: #fde047; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem;"></p>
+          <div class="rx-quote">
+            <p id="rxQuote"></p>
+            <div id="rxQuoteAuthor"
+              style="text-align: right; color: var(--gold-light); font-size: 0.8rem; margin-top: 0.35rem;"></div>
+          </div>
+        </div>
+
+        <div class="rx-section">
+          <h4><span class="icon-anim icon-pulse">💊</span> Phác Đồ Hành Động</h4>
+          <ul id="rxCureList" class="rx-cure-list"></ul>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <span id="rxActionBadge" class="badge badge-green" style="font-size: 0.85rem; padding: 0.4rem 1rem;"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODULE 2: CHATBOT KARL MARX & V.I. LÊNIN
+       ========================================== -->
+  <section id="chatMarxSection" class="chat-section reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-gold">AI Đối Thoại</span>
+        <h2>Đàm Đạo Cùng Cụ Mác & Lênin</h2>
+        <p>Đối thoại biện chứng dí dỏm cùng hai triết gia về cuộc sống và thời đại công nghệ.</p>
+      </div>
+
+      <div class="chat-container">
+        <!-- Persona Tabs -->
+        <div class="chat-persona-tabs">
+          <button class="persona-tab-btn active" data-persona="marx">
+            <span class="persona-avatar">🧔‍♂️</span>
+            <span>Karl Marx (Cụ Mác)</span>
+            <span class="persona-status-dot" title="Trực tuyến"></span>
+          </button>
+          <button class="persona-tab-btn" data-persona="lenin">
+            <span class="persona-avatar">🪒</span>
+            <span>V.I. Lênin (Cụ Lênin)</span>
+            <span class="persona-status-dot" title="Trực tuyến"></span>
+          </button>
+        </div>
+
+        <!-- Chat Messages Log -->
+        <div id="chatMessagesBox" class="chat-messages-box">
+          <!-- Initial Welcome Message -->
+          <div class="chat-bubble persona">
+            <div class="author-tag">🧔‍♂️ Karl Marx • Nhà Biện Chứng</div>
+            <div>Chào người bạn trẻ! Bạn đang gặp băn khoăn gì trong học tập hay cuộc sống? Hãy hỏi tôi, ta cùng mổ xẻ
+              bản chất vấn đề!</div>
+          </div>
+        </div>
+
+        <!-- Quick Prompts for Chat -->
+        <div class="chat-quick-bar">
+          <button class="ai-suggestion-chip chat-quick-btn"
+            data-msg="Cụ Mác ơi, em có nên thức thâu đêm cày view cho idol không?"><span class="chip-icon">🌟</span> Cày
+            view cho idol?</button>
+          <button class="ai-suggestion-chip chat-quick-btn"
+            data-msg="Làm sao để hết nghèo và tự do tài chính hả Cụ?"><span class="chip-icon">💰</span> Làm sao hết
+            nghèo?</button>
+          <button class="ai-suggestion-chip chat-quick-btn"
+            data-msg="Em hay lười và trì hoãn thì làm sao để dứt điểm?"><span class="chip-icon">⏰</span> Trị bệnh
+            lười?</button>
+          <button class="ai-suggestion-chip chat-quick-btn"
+            data-msg="AI thông minh như vậy có cướp mất việc làm và ý thức của con người không?"><span
+              class="chip-icon">🤖</span> AI thay thế con người?</button>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="chat-input-bar">
+          <input type="text" id="chatInputText" class="chat-input" placeholder="Nhập câu hỏi đàm đạo cùng triết gia...">
+          <button id="sendChatBtn" class="btn btn-gold" style="padding: 0.65rem 1.35rem;">
+            Gửi <span class="arrow-icon">➔</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MODULE 3: ĐẤU TRƯỜNG PHẢN BIỆN AI (THE DIALECTIC DEBATER)
+       ========================================== -->
+  <section id="debateSection" class="reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-crimson">Đấu Trí AI</span>
+        <h2>Đấu Trường Phản Biện AI</h2>
+        <p>Bảo vệ luận điểm của bạn trước Nhà Biện Chứng Khó Tính. Đạt 80%+ để nhận Bằng Khen.</p>
+      </div>
+
+      <div class="debate-container">
+        <!-- Dialectic Score Meter -->
+        <div class="debate-meter-wrapper">
+          <div class="meter-header">
+            <span>Chỉ Số Biện Chứng:</span>
+            <span id="debateScoreVal" style="font-weight: 800; font-size: 1.25rem; color: var(--gold-light);">0 /
+              100</span>
+          </div>
+          <div class="meter-bar-track">
+            <div id="debateMeterFill" class="meter-bar-fill" style="width: 0%;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim);">
+            <span>0%: Duy tâm / Siêu hình</span>
+            <span>50%: Có lập luận</span>
+            <span>80%+: Bậc Thầy Biện Chứng</span>
+          </div>
+        </div>
+
+        <!-- Debate Input Card -->
+        <div class="glass-panel debate-card">
+          <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem;">Luận Điểm Của Bạn</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.9rem;">
+            Nhập quan điểm bạn muốn bảo vệ:
+          </p>
+
+          <div class="ai-input-wrapper">
+            <textarea id="debateInput" class="ai-textarea" style="min-height: 85px;"
+              placeholder="Nhập luận điểm của bạn... (VD: Tiền là tất cả, không có tiền thì không thể hạnh phúc.)"></textarea>
+          </div>
+
+          <!-- Suggested Hot Topics -->
+          <div class="ai-prompt-suggestions">
+            <span style="font-size: 0.8rem; color: var(--gold-light); font-weight: 600;">Chủ đề nóng:</span>
+            <button class="ai-suggestion-chip debate-topic-btn"
+              data-topic="Thành công của con người hoàn toàn do số phận và may mắn định đoạt."><span
+                class="chip-icon">🎲</span> Số phận là tất cả</button>
+            <button class="ai-suggestion-chip debate-topic-btn"
+              data-topic="Chỉ cần suy nghĩ tích cực và manifest là vũ trụ sẽ mang lại giàu sang."><span
+                class="chip-icon">✨</span> Manifest vũ trụ</button>
+            <button class="ai-suggestion-chip debate-topic-btn"
+              data-topic="Trí tuệ nhân tạo (AI) đã có ý thức và sắp thống trị hoàn toàn loài người."><span
+                class="chip-icon">🦾</span> AI thống trị con người</button>
+            <button class="ai-suggestion-chip debate-topic-btn"
+              data-topic="Thực tiễn là cơ sở, động lực và tiêu chuẩn duy nhất của chân lý; lý luận phải gắn với thực hành."><span
+                class="chip-icon">🔨</span> Chân lý thực tiễn</button>
+          </div>
+
+          <div style="text-align: right; margin-top: 1rem;">
+            <button id="submitDebateBtn" class="btn btn-primary">
+              <span class="icon-anim icon-clash">⚔️</span> Thách Đấu Phản Biện
+            </button>
+          </div>
+
+          <!-- Debate Result Area -->
+          <div id="debateResultBox" class="hidden" style="margin-top: 1.75rem;"></div>
+
+          <!-- Unlock Certificate Banner -->
+          <div id="debateUnlockBanner" class="debate-unlock-banner hidden">
+            <div class="trophy-icon">🏆</div>
+            <h3 style="color: #6ee7b7; font-size: 1.35rem; margin-bottom: 0.4rem;">XUẤT SẮC! BẠN ĐÃ ĐẠT CHỈ SỐ BIỆN
+              CHỨNG CAO!</h3>
+            <p style="color: #f1f5f9; font-size: 0.92rem; margin-bottom: 1.2rem;">
+              Tư duy sắc bén của bạn đã được công nhận. Bằng Khen Danh Dự của bạn đã sẵn sàng!
+            </p>
+            <a href="#certificateSection" class="btn btn-gold">
+              Nhận & Tải Bằng Khen Ngay <span class="arrow-icon">➔</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MODULE 4: THẺ BÀI KHAI SÁNG (TAROT CARDS)
+       ========================================== -->
+  <section id="tarotSection" class="reveal" style="background: rgba(18, 22, 34, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-gold">Thông Điệp Hôm Nay</span>
+        <h2>Thẻ Bài Khai Sáng Biện Chứng</h2>
+        <p>Lật mở nguyên lý triết học soi đường cho bạn hôm nay.</p>
+      </div>
+
+      <div class="tarot-stage">
+        <div class="tarot-card-wrapper">
+          <div id="tarotCard" class="tarot-card">
+
+            <!-- Card Back -->
+            <div class="card-face card-back">
+              <div class="card-back-pattern">
+                <div class="card-back-symbol">✦</div>
+                <h4 style="font-family: var(--font-heading); color: var(--gold-light); letter-spacing: 2px;">DIALECTICS
+                </h4>
+                <p style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Chạm để lật bài</p>
+              </div>
+            </div>
+
+            <!-- Card Front -->
+            <div class="card-face card-front">
+              <div class="tarot-meta">
+                <span id="tarotSubtitleFront" class="badge badge-crimson">Quy luật</span>
+                <div id="tarotSymbolFront" class="tarot-symbol-lg">⚡</div>
+                <h3 id="tarotTitleFront" style="color: #fff; font-size: 1.25rem;">Bước Nhảy Vọt</h3>
+                <div id="tarotKeywords" class="tarot-keywords"></div>
+              </div>
+              <div>
+                <p id="tarotMessage" class="tarot-message"></p>
+                <p id="tarotAdvice" style="margin-top: 0.5rem; font-size: 0.8rem; color: #fde047; font-weight: 600;">
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div>
+          <button id="drawTarotBtn" class="btn btn-gold">
+            <span class="icon-anim icon-flip">🎴</span> Rút Thẻ Bài Khác (Shuffle)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MODULE 5: CẤP CHỨNG NHẬN (CERTIFICATE)
+       ========================================== -->
+  <section id="certificateSection" class="reveal">
+    <div class="container cert-section">
+      <div class="section-header">
+        <span class="badge badge-crimson">Vinh Danh</span>
+        <h2>Chứng Nhận Tư Duy Biện Chứng</h2>
+        <p>Xuất Chứng chỉ số độ phân giải cao (1600x1100 px) vinh danh năng lực biện chứng.</p>
+      </div>
+
+      <div class="cert-input-bar">
+        <input type="text" id="certRecipientName" class="cert-input" placeholder="Nhập họ và tên sinh viên..."
+          value="Sinh Viên Biện Chứng">
+        <button id="generateCertBtn" class="btn btn-primary">
+          <span class="icon-anim icon-bounce">📜</span> Tạo Chứng Nhận
+        </button>
+      </div>
+
+      <div class="cert-preview-box">
+        <canvas id="certificateCanvas"></canvas>
+      </div>
+
+      <div>
+        <button id="downloadCertBtn" class="btn btn-gold" style="font-size: 0.95rem; padding: 0.75rem 1.85rem;">
+          <span class="icon-anim icon-bounce-down">📥</span> Tải Bằng Khen Về Máy (PNG)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MODAL: CÀI ĐẶT API KEY GEMINI
+       ========================================== -->
+  <div id="apiKeyModal" class="modal-overlay">
+    <div class="api-key-modal-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+        <h3 style="color: var(--gold-light); font-size: 1.2rem;">⚙️ Cấu Hình Google Gemini AI</h3>
+        <button id="closeApiKeyModalBtn" class="close-modal-btn">&times;</button>
+      </div>
+      <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1rem;">
+        Nhập Google Gemini API Key để kích hoạt chế độ <strong>Live AI Real-time</strong>. Nếu để trống, hệ thống sẽ tự
+        động dùng chế độ <strong>Mô phỏng Offline Thông minh</strong> (100% không sợ mất mạng khi thuyết trình).
+      </p>
+      <div style="margin-bottom: 1.2rem;">
+        <label
+          style="display: block; font-size: 0.82rem; color: var(--gold-light); margin-bottom: 0.35rem; font-weight: 600;">Gemini
+          API Key:</label>
+        <input type="password" id="geminiApiKeyInput" class="cert-input" style="width: 100%;"
+          placeholder="Dán khóa API Key (AIzaSy...)">
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="https://aistudio.google.com/app/apikey" target="_blank"
+          style="color: var(--gold-light); font-size: 0.8rem; text-decoration: underline;">
+          Lấy Key miễn phí ➔
+        </a>
+        <button id="saveApiKeyBtn" class="btn btn-primary" style="padding: 0.45rem 1.1rem;">
+          Lưu Cấu Hình
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FOOTER & CITATIONS (MINIMALIST)
+       ========================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col" style="max-width: 380px;">
+          <div class="nav-brand" style="margin-bottom: 0.75rem;">
+            <div class="brand-emblem">☭</div>
+            <div class="brand-text">
+              <h1 style="font-size: 1.05rem;">BIỆN CHỨNG GEN Z</h1>
+              <span>TRIẾT HỌC & AI</span>
+            </div>
+          </div>
+          <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">
+            Dự án nghiên cứu và sáng tạo học thuật số kết hợp Phép biện chứng duy vật Mác – Lênin và Trí tuệ nhân tạo
+            đương đại.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Tài Liệu Nền Tảng</h4>
+          <ul
+            style="list-style: none; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.83rem; color: var(--text-dim);">
+            <li>✦ Giáo trình Triết học Mác – Lênin (Bộ GD&ĐT)</li>
+            <li>✦ C. Mác và Ph. Ăng-ghen Toàn tập</li>
+            <li>✦ V.I. Lênin Toàn tập (Bút ký triết học)</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Thông Tin Đồ Án</h4>
+          <p style="font-size: 0.83rem; color: var(--text-dim); line-height: 1.6;">
+            Học phần: Triết học Mác – Lênin (MLN1)<br>
+            Phiên bản: 2.0 (AI Edition)
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Dự án Sáng tạo Triết học Mác – Lênin • Mục đích giáo dục và nghiên cứu học thuật</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODAL TRẠNG THÁI & CẤU HÌNH AI (NETLIFY & GROQ)
+       ========================================== -->
+  <div id="apiKeyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-dialog">
+      <button id="closeApiKeyModalBtn" class="modal-close-btn" aria-label="Đóng modal">✕</button>
+
+      <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.75rem;">
+        <span style="font-size: 1.6rem;">⚡</span>
+        <h3 id="modalTitle" style="font-family: var(--font-display); font-size: 1.35rem; color: var(--gold-light); margin: 0;">
+          Hệ Thống Trí Tuệ Nhân Tạo Biện Chứng
+        </h3>
+      </div>
+
+      <div class="info-banner" id="proxyStatusBanner">
+        <strong>🟢 Chế độ Tự Động Hoạt Động:</strong> Web tích hợp sẵn <strong>Netlify Serverless Proxy + Groq Cloud (LLaMA-3.3-70B)</strong>. Khi deploy lên Netlify, mọi người truy cập đều có AI phản hồi trực tiếp với tốc độ ánh sáng mà <em>không cần đăng ký hay nhập API key</em>!
+      </div>
+
+      <h4 style="font-size: 0.95rem; color: var(--gold-light); margin-bottom: 0.5rem;">
+        🚀 Cấu hình một lần duy nhất trên Netlify:
+      </h4>
+      <div class="step-box">
+        <div class="step-num">1</div>
+        <div>Lấy Groq API Key miễn phí 100% tại <a href="https://console.groq.com/keys" target="_blank" rel="noopener" style="color: var(--gold-primary); text-decoration: underline;">console.groq.com</a> (tạo trong 15 giây).</div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">2</div>
+        <div>Vào Netlify Dashboard ➔ Chọn trang web của bạn ➔ <strong>Site configuration</strong> ➔ <strong>Environment variables</strong>.</div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">3</div>
+        <div>Thêm biến: Tên là <code style="color: #34d399; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">GROQ_API_KEY</code>, Giá trị là mã khóa <code>gsk_...</code> của bạn. Xong!</div>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid var(--border-subtle); margin: 1.25rem 0;">
+
+      <h4 style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 0.4rem;">
+        🛠️ Tùy chọn kiểm thử cục bộ trên máy (Local Developer):
+      </h4>
+      <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.75rem; line-height: 1.5;">
+        Nếu mở file HTML trên máy mà chưa chạy Netlify CLI, bạn có thể lưu key trực tiếp vào trình duyệt này:
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div>
+          <label style="font-size: 0.82rem; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">
+            Groq API Key (khuyên dùng - siêu tốc độ):
+          </label>
+          <input type="password" id="groqApiKeyInput" placeholder="gsk_..."
+            style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.55rem 0.85rem; color: #fff; font-size: 0.85rem; font-family: monospace;">
+        </div>
+        <div>
+          <label style="font-size: 0.82rem; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">
+            Google Gemini API Key (dự phòng):
+          </label>
+          <input type="password" id="geminiApiKeyInput" placeholder="AIzaSy..."
+            style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.55rem 0.85rem; color: #fff; font-size: 0.85rem; font-family: monospace;">
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem;">
+        <span id="saveKeyFeedback" style="font-size: 0.82rem; color: #34d399;"></span>
+        <button id="saveApiKeyBtn" class="btn btn-primary" style="padding: 0.45rem 1.15rem; font-size: 0.85rem;">
+          💾 Lưu Cấu Hình
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/ai-service.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/certificate.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

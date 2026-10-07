@@ -1,0 +1,14 @@
+# Node / dependencies
+node_modules/
+.npm
+.netlify/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables & secrets (khong bao gio commit key len git)
+.env
+.env.local
+*.log

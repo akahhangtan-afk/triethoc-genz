@@ -1,0 +1,18 @@
+# Netlify Configuration File
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Điều hướng /api/chat trực tiếp tới serverless function
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
+# Bảo mật và tối ưu Header HTTP
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
