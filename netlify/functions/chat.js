@@ -62,7 +62,7 @@ exports.handler = async function (event, context) {
       prompt,
       messages,
       systemPrompt,
-      model = 'llama-3.3-70b-versatile',
+      model = 'openai/gpt-oss-120b',
       temperature = 0.7,
       max_tokens = 1500,
       response_format
@@ -73,7 +73,6 @@ exports.handler = async function (event, context) {
 
     if (Array.isArray(messages) && messages.length > 0) {
       finalMessages = [...messages];
-      // Nếu có systemPrompt riêng và chưa có role system đầu tiên
       if (systemPrompt && finalMessages[0]?.role !== 'system') {
         finalMessages.unshift({ role: 'system', content: systemPrompt });
       }
@@ -90,70 +89,95 @@ exports.handler = async function (event, context) {
       };
     }
 
-    // 4. Tạo payload gửi đến Groq Cloud API
-    const groqPayload = {
-      model: model,
-      messages: finalMessages,
-      temperature: Number(temperature) || 0.7,
-      max_tokens: Number(max_tokens) || 1500
-    };
+    // Danh sách model ưu tiên tự động fallback nếu một model không có quyền truy cập
+    const candidateModels = [
+      model,
+      'openai/gpt-oss-120b',
+      'openai/gpt-oss-20b',
+      'qwen/qwen3.8-27b',
+      'llama-3.3-70b-versatile',
+      'llama-3.1-8b-instant'
+    ].filter(Boolean);
+    const uniqueModels = [...new Set(candidateModels)];
 
-    if (response_format && response_format.type === 'json_object') {
-      groqPayload.response_format = { type: 'json_object' };
+    let successData = null;
+    let usedModel = uniqueModels[0];
+    let lastError = null;
+
+    // 4. Thử gọi các model khả dụng
+    for (const m of uniqueModels) {
+      const groqPayload = {
+        model: m,
+        messages: finalMessages,
+        temperature: Number(temperature) || 0.7,
+        max_tokens: Number(max_tokens) || 1500
+      };
+
+      if (response_format && response_format.type === 'json_object') {
+        groqPayload.response_format = { type: 'json_object' };
+      }
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 25000);
+
+      try {
+        const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${GROQ_API_KEY.trim()}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(groqPayload),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        if (groqResponse.ok) {
+          successData = await groqResponse.json();
+          usedModel = m;
+          break;
+        } else {
+          const errText = await groqResponse.text();
+          lastError = errText;
+          console.warn(`Groq model ${m} returned ${groqResponse.status}:`, errText);
+        }
+      } catch (callErr) {
+        clearTimeout(timeoutId);
+        lastError = callErr.message;
+      }
     }
 
-    // 5. Gọi Groq Cloud API qua native fetch của Node.js 18+
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000); // 20s timeout
-
-    const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${GROQ_API_KEY.trim()}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(groqPayload),
-      signal: controller.signal
-    });
-
-    clearTimeout(timeoutId);
-
-    if (!groqResponse.ok) {
-      const errorText = await groqResponse.text();
-      console.error('Groq API Error:', groqResponse.status, errorText);
+    if (!successData) {
       return {
-        statusCode: groqResponse.status,
+        statusCode: 502,
         headers,
         body: JSON.stringify({
-          error: `Groq API Error (${groqResponse.status}): ${errorText}`
+          error: `Tất cả các mô hình Groq đều không phản hồi: ${lastError}`
         })
       };
     }
 
-    const groqData = await groqResponse.json();
-    const content = groqData.choices?.[0]?.message?.content || '';
+    const choice = successData.choices?.[0]?.message;
+    const content = choice?.content || choice?.reasoning || '';
 
-    // 6. Trả kết quả thành công về cho Frontend
+    // 5. Trả kết quả thành công về cho Frontend
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
         reply: content,
-        model: groqData.model || model,
-        usage: groqData.usage
+        model: successData.model || usedModel,
+        usage: successData.usage
       })
     };
 
   } catch (error) {
     console.error('Netlify Function Proxy Error:', error);
-
-    const isTimeout = error.name === 'AbortError';
     return {
-      statusCode: isTimeout ? 504 : 500,
+      statusCode: 500,
       headers,
-      body: JSON.stringify({
-        error: isTimeout ? 'Yêu cầu tới Groq Cloud bị quá thời gian (timeout).' : error.message
-      })
+      body: JSON.stringify({ error: error.message || 'Internal Server Error' })
     };
   }
 };

@@ -14,7 +14,7 @@ class PhilosophyAIService {
     this.proxyUrl = '/api/chat';
     this.groqApiKey = typeof localStorage !== 'undefined' ? (localStorage.getItem('groq_api_key') || '') : '';
     this.geminiApiKey = typeof localStorage !== 'undefined' ? (localStorage.getItem('gemini_api_key') || '') : '';
-    this.preferredModel = 'llama-3.3-70b-versatile';
+    this.preferredModel = 'openai/gpt-oss-120b';
     this.geminiModel = 'gemini-1.5-flash';
     this.geminiApiUrl = 'https://generativelanguage.googleapis.com/v1beta/models';
   }
